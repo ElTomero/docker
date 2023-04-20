@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  webserver:
+    image: webserver
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - dbdata:/usr/share/nginx/html
+    ports:
+      - 8080:80
+    networks:
+      - paolo
+  web2:
+    image: webserver
+    networks:
+      - paolo2
+  web3:
+    image: webserver
+    networks:
+      - extra
+      - paolo
+      - paolo2
+volumes:
+  dbdata:
+networks:
+  paolo:
+  paolo2: 
+  extra:
+    external: true
+

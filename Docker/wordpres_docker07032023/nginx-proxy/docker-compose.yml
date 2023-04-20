@@ -1,0 +1,14 @@
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - 80:80
+    networks:
+      - nginx_proxy
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+networks:
+  nginx_proxy:
+    external: true
+
